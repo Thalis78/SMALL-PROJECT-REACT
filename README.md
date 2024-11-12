@@ -1,50 +1,13 @@
-# React + TypeScript + Vite
+## PERFURAÇÃO DAS PROPS(PROP DRILING)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+NO REACT PROP DRILING REFERE-SE AO PROBLEMA QUE OCORRE QUANDO PRECISAMOS PASSAR DADOS DE UM COMPONENTE PARA OUTRO. O REAL PROBLEMA DISSO É TER QUE PASSAR ESSE DADOS ATRAVÉS DE VÁRIOS INTERMEDIARIOS, TENDO QUE PERFURAR VÁRIAS CAMADAS DE COMPONENTES ATÉ O COMPONENTE DE DESTINO. E ESSE PROCESSO ACABA TORNANDO O CÓDIGO DIFICÍL DE MANTER E ENTENDER, ESPECIALMENTE QUANDO A ÁRVORE DE COMPONENTES É PROFUNDA. NO FINAL DAS CONTAS A PROP PASSA PRA VÁRIOS COMPONENTES QUE NÃO IRÃO UTILIZA-LA E SIM APENAS CARREGAR PARA O PROXIMO NIVEL.
 
-Currently, two official plugins are available:
+## SOLUÇÃO:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+A UTILIZAÇÃO DO CONTEXTO(CONTEXT) DO REACT FOI CRIADO PARA RESOLVER O PROBLEMA DO PROPS. EM VEZ DE PASSAR DADOS DE UM COMPONENTE PARA O OUTRO ATRAVÉS DE PROPS EM CADA NÍVEL, O CONTEXT PERMITE QUE VOCÊ CRIE UMA ESPÉCIE DE "ESCOPO" GLOBAL PARA DADOS QUE PODEM SER ACESSADOS DIRETAMENTE POR QUALQUER COMPONENTE DENTRO DESSE ESCOPO, IN      DEPENDENTEMENTE DE SUA POSIÇÃO NA ÁRVORE DE COMPONENTES.
 
-## Expanding the ESLint configuration
+## BENEFÍCIOS DO CONTEXTO:
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
-
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
-
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
-
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
-
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+- CÓDIGO MAIS LIMPO;
+- FACILIDADE DE MANUTENÇÃO;
+- ELIMINA O PROP DRILING;
